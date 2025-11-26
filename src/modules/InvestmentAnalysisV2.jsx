@@ -90,61 +90,62 @@ const DEBT_SERVICE = {
 // Impuesto del 30% sobre utilidad neta (después de intereses)
 const TAX_RATE = 0.30 // 30%
 
-// Proyecciones con nuevos supuestos (Renta $75K/mes, 5 empleados, Impuestos 30%)
+// Proyecciones con crecimiento 3.5% anual por tienda (Renta $75K/mes, 5 empleados, Impuestos 30%)
 // Años 1-3: Marketing 8%, Total OpEx 43.5%, EBITDA Bruto 20.5%, EBITDA Neto 12.5%
 // Años 4+: Marketing 5%, Total OpEx 40.5%, EBITDA Bruto 23.5%, EBITDA Neto 15.5%
 // Impuestos: 30% sobre EBIT
 // FCF incluye: Net Income - Pago Capital Deuda - Inversión Tiendas Orgánicas
+// NUEVO: Revenue por tienda crece 3.5% anual (año 1: $6M, año 10: $8.18M)
 const PROYECCION_10_ANOS = [
-  { year: 1, revenue: 52, ebitdaBruto: 10.66, feeOperadora: 4.16, ebitdaNeto: 6.50, interestExpense: 0.775, ebit: 5.725, taxes: 1.717, netIncome: 4.01, capitalPayment: 0, fcf: 4.01, debtService: 0.775, tiendas: 11, distribuible: 4.01, inversionTiendas: 0 },
-  { year: 2, revenue: 73.4, ebitdaBruto: 13.34, feeOperadora: 5.87, ebitdaNeto: 9.18, interestExpense: 0.775, ebit: 8.405, taxes: 2.521, netIncome: 5.88, capitalPayment: 0, fcf: 5.88, debtService: 0.775, tiendas: 13, distribuible: 5.88, inversionTiendas: 0 },
-  { year: 3, revenue: 80.6, ebitdaBruto: 14.23, feeOperadora: 6.45, ebitdaNeto: 10.07, interestExpense: 0.775, ebit: 9.295, taxes: 2.788, netIncome: 6.51, capitalPayment: 0, fcf: 4.01, debtService: 0.775, tiendas: 14, distribuible: 4.01, inversionTiendas: 2.5 },
-  { year: 4, revenue: 91.8, ebitdaBruto: 21.57, feeOperadora: 7.34, ebitdaNeto: 14.23, interestExpense: 0.775, ebit: 13.455, taxes: 4.037, netIncome: 9.42, capitalPayment: 1.67, fcf: 2.75, debtService: 2.445, tiendas: 16, distribuible: 2.75, inversionTiendas: 5.0 },
-  { year: 5, revenue: 103.0, ebitdaBruto: 24.20, feeOperadora: 8.24, ebitdaNeto: 15.96, interestExpense: 0.775, ebit: 15.185, taxes: 4.556, netIncome: 10.63, capitalPayment: 1.67, fcf: 3.96, debtService: 2.445, tiendas: 18, distribuible: 3.96, inversionTiendas: 5.0 },
-  { year: 6, revenue: 108.0, ebitdaBruto: 25.38, feeOperadora: 8.64, ebitdaNeto: 16.74, interestExpense: 0.775, ebit: 15.965, taxes: 4.789, netIncome: 11.18, capitalPayment: 1.66, fcf: 9.52, debtService: 2.435, tiendas: 18, distribuible: 9.52, inversionTiendas: 0 },
-  { year: 7, revenue: 108.0, ebitdaBruto: 25.38, feeOperadora: 8.64, ebitdaNeto: 16.74, interestExpense: 0, ebit: 16.740, taxes: 5.022, netIncome: 11.72, capitalPayment: 0, fcf: 11.72, debtService: 0.000, tiendas: 18, distribuible: 11.72, inversionTiendas: 0 },
-  { year: 8, revenue: 108.0, ebitdaBruto: 25.38, feeOperadora: 8.64, ebitdaNeto: 16.74, interestExpense: 0, ebit: 16.740, taxes: 5.022, netIncome: 11.72, capitalPayment: 0, fcf: 11.72, debtService: 0.000, tiendas: 18, distribuible: 11.72, inversionTiendas: 0 },
-  { year: 9, revenue: 108.0, ebitdaBruto: 25.38, feeOperadora: 8.64, ebitdaNeto: 16.74, interestExpense: 0, ebit: 16.740, taxes: 5.022, netIncome: 11.72, capitalPayment: 0, fcf: 11.72, debtService: 0.000, tiendas: 18, distribuible: 11.72, inversionTiendas: 0 },
-  { year: 10, revenue: 108.0, ebitdaBruto: 25.38, feeOperadora: 8.64, ebitdaNeto: 16.74, interestExpense: 0, ebit: 16.740, taxes: 5.022, netIncome: 11.72, capitalPayment: 0, fcf: 11.72, debtService: 0.000, tiendas: 18, distribuible: 11.72, inversionTiendas: 0 }
+  { year: 1, revenue: 66.0, ebitdaBruto: 13.53, feeOperadora: 5.28, ebitdaNeto: 8.25, interestExpense: 0.775, ebit: 7.475, taxes: 2.242, netIncome: 5.23, capitalPayment: 0, fcf: 5.23, debtService: 0.775, tiendas: 11, distribuible: 5.23, inversionTiendas: 0 },
+  { year: 2, revenue: 80.73, ebitdaBruto: 16.55, feeOperadora: 6.46, ebitdaNeto: 10.09, interestExpense: 0.775, ebit: 9.316, taxes: 2.795, netIncome: 6.52, capitalPayment: 0, fcf: 6.52, debtService: 0.775, tiendas: 13, distribuible: 6.52, inversionTiendas: 0 },
+  { year: 3, revenue: 89.98, ebitdaBruto: 18.45, feeOperadora: 7.2, ebitdaNeto: 11.25, interestExpense: 0.775, ebit: 10.473, taxes: 3.142, netIncome: 7.33, capitalPayment: 0, fcf: 4.83, debtService: 0.775, tiendas: 14, distribuible: 4.83, inversionTiendas: 2.5 },
+  { year: 4, revenue: 106.44, ebitdaBruto: 25.01, feeOperadora: 8.51, ebitdaNeto: 16.5, interestExpense: 0.775, ebit: 15.723, taxes: 4.717, netIncome: 11.01, capitalPayment: 1.67, fcf: 4.34, debtService: 2.445, tiendas: 16, distribuible: 4.34, inversionTiendas: 5.0 },
+  { year: 5, revenue: 123.93, ebitdaBruto: 29.12, feeOperadora: 9.91, ebitdaNeto: 19.21, interestExpense: 0.775, ebit: 18.435, taxes: 5.53, netIncome: 12.9, capitalPayment: 1.67, fcf: 6.23, debtService: 2.445, tiendas: 18, distribuible: 6.23, inversionTiendas: 5.0 },
+  { year: 6, revenue: 128.27, ebitdaBruto: 30.14, feeOperadora: 10.26, ebitdaNeto: 19.88, interestExpense: 0.775, ebit: 19.107, taxes: 5.732, netIncome: 13.37, capitalPayment: 1.66, fcf: 11.71, debtService: 2.435, tiendas: 18, distribuible: 11.71, inversionTiendas: 0 },
+  { year: 7, revenue: 132.76, ebitdaBruto: 31.2, feeOperadora: 10.62, ebitdaNeto: 20.58, interestExpense: 0, ebit: 20.578, taxes: 6.173, netIncome: 14.4, capitalPayment: 0, fcf: 14.4, debtService: 0.0, tiendas: 18, distribuible: 14.4, inversionTiendas: 0 },
+  { year: 8, revenue: 137.41, ebitdaBruto: 32.29, feeOperadora: 10.99, ebitdaNeto: 21.3, interestExpense: 0, ebit: 21.298, taxes: 6.389, netIncome: 14.91, capitalPayment: 0, fcf: 14.91, debtService: 0.0, tiendas: 18, distribuible: 14.91, inversionTiendas: 0 },
+  { year: 9, revenue: 142.22, ebitdaBruto: 33.42, feeOperadora: 11.38, ebitdaNeto: 22.04, interestExpense: 0, ebit: 22.043, taxes: 6.613, netIncome: 15.43, capitalPayment: 0, fcf: 15.43, debtService: 0.0, tiendas: 18, distribuible: 15.43, inversionTiendas: 0 },
+  { year: 10, revenue: 147.19, ebitdaBruto: 34.59, feeOperadora: 11.78, ebitdaNeto: 22.81, interestExpense: 0, ebit: 22.815, taxes: 6.844, netIncome: 15.97, capitalPayment: 0, fcf: 15.97, debtService: 0.0, tiendas: 18, distribuible: 15.97, inversionTiendas: 0 }
 ]
 
-// Cálculo DCF con WACC 20%, impuestos 30%, y nuevos márgenes (renta $75K/mes, 5 empleados)
+// Cálculo DCF con WACC 20%, growth 3.5% anual, impuestos 30%
 // FCF = Net Income - Capital Payment - Inversión Tiendas Orgánicas
 const DCF_DETAIL = [
-  { year: 1, fcf: 4.01, pvFactor: 0.8333, pv: 3.34 },
-  { year: 2, fcf: 5.88, pvFactor: 0.6944, pv: 4.08 },
-  { year: 3, fcf: 4.01, pvFactor: 0.5787, pv: 2.32 },
-  { year: 4, fcf: 2.75, pvFactor: 0.4823, pv: 1.33 },
-  { year: 5, fcf: 3.96, pvFactor: 0.4019, pv: 1.59 },
-  { year: 6, fcf: 9.52, pvFactor: 0.3349, pv: 3.19 },
-  { year: 7, fcf: 11.72, pvFactor: 0.2791, pv: 3.27 },
-  { year: 8, fcf: 11.72, pvFactor: 0.2326, pv: 2.73 },
-  { year: 9, fcf: 11.72, pvFactor: 0.1938, pv: 2.27 },
-  { year: 10, fcf: 11.72, pvFactor: 0.1615, pv: 1.89 }
+  { year: 1, fcf: 5.23, pvFactor: 0.8333, pv: 4.36 },
+  { year: 2, fcf: 6.52, pvFactor: 0.6944, pv: 4.53 },
+  { year: 3, fcf: 4.83, pvFactor: 0.5787, pv: 2.80 },
+  { year: 4, fcf: 4.34, pvFactor: 0.4823, pv: 2.09 },
+  { year: 5, fcf: 6.23, pvFactor: 0.4019, pv: 2.50 },
+  { year: 6, fcf: 11.71, pvFactor: 0.3349, pv: 3.92 },
+  { year: 7, fcf: 14.4, pvFactor: 0.2791, pv: 4.02 },
+  { year: 8, fcf: 14.91, pvFactor: 0.2326, pv: 3.47 },
+  { year: 9, fcf: 15.43, pvFactor: 0.1938, pv: 2.99 },
+  { year: 10, fcf: 15.97, pvFactor: 0.1615, pv: 2.58 }
 ]
 
 const DCF_VALUATION = {
   // Flujos descontados
   year1to10Flows: DCF_DETAIL,
-  pvCashFlows10Years: 26.01, // Suma de PV años 1-10
+  pvCashFlows10Years: 33.26, // Suma de PV años 1-10
 
   // Terminal Value
-  year10FCF: 11.72,
+  year10FCF: 15.97,
   perpetualGrowth: 0.03, // 3%
   wacc: 0.20, // 20%
-  terminalValue: 71.01, // 11.72 * 1.03 / (0.20 - 0.03)
-  terminalValuePV: 11.47, // TV / 1.20^10
+  terminalValue: 96.76, // 15.97 * 1.03 / (0.20 - 0.03)
+  terminalValuePV: 15.63, // TV / 1.20^10
 
   // Valuación total
-  enterpriseValue: 37.48, // 26.01 + 11.47
+  enterpriseValue: 48.88, // 33.26 + 15.63
   deudaNeta: 0, // Deuda liquidada en año 6
-  equityValueDCF: 37.48 // EV - Deuda (deuda ya pagada en proyección)
+  equityValueDCF: 48.88 // EV - Deuda (deuda ya pagada en proyección)
 }
 
 const VENTURE_CAPITAL_VALUATION = {
-  year6Revenue: 108.0,
+  year6Revenue: 128.27,
   multiploVentas: 2.0, // 2X ventas (conservador para retail)
-  valuationYear6: 216.0, // 2.0 × $108.0M
+  valuationYear6: 256.54, // 2.0 × $128.27M
   methodology: '2X Revenue Multiple'
 }
 
@@ -231,16 +232,16 @@ const calculateExitScenario10 = () => {
 const EXIT_SCENARIO_6 = calculateExitScenario6()
 const EXIT_SCENARIO_10 = calculateExitScenario10()
 
-// P&L con nuevos supuestos (Renta $75K/mes, 5 empleados, OpEx salarios 15%, renta 15%, Impuestos 30%)
+// P&L con growth 3.5% anual (Renta $75K/mes, 5 empleados, OpEx salarios 15%, renta 15%, Impuestos 30%)
 const PL_PROYECCIONES = [
-  { year: 1, revenue: 52, cogs: 18.72, gross_profit: 33.28, gross_margin: 64, opex_marketing: 4.16, opex_salaries: 7.80, opex_rent: 7.80, opex_comisiones: 1.56, opex_other: 1.30, total_opex: 22.62, ebitdaBruto: 10.66, ebitdaBrutoMargin: 20.5, feeOperadora: 4.16, ebitdaNeto: 6.50, ebitdaNetoMargin: 12.5, interestExpense: 0.775, ebit: 5.725, taxes: 1.717, netIncome: 4.01, capitalPayment: 0, debtService: 0.775 },
-  { year: 2, revenue: 73.4, cogs: 26.42, gross_profit: 46.98, gross_margin: 64, opex_marketing: 5.87, opex_salaries: 11.01, opex_rent: 11.01, opex_comisiones: 2.20, opex_other: 1.84, total_opex: 31.93, ebitdaBruto: 15.05, ebitdaBrutoMargin: 20.5, feeOperadora: 5.87, ebitdaNeto: 9.18, ebitdaNetoMargin: 12.5, interestExpense: 0.775, ebit: 8.405, taxes: 2.521, netIncome: 5.88, capitalPayment: 0, debtService: 0.775 },
-  { year: 3, revenue: 80.6, cogs: 29.02, gross_profit: 51.58, gross_margin: 64, opex_marketing: 6.45, opex_salaries: 12.09, opex_rent: 12.09, opex_comisiones: 2.42, opex_other: 2.02, total_opex: 35.06, ebitdaBruto: 16.52, ebitdaBrutoMargin: 20.5, feeOperadora: 6.45, ebitdaNeto: 10.07, ebitdaNetoMargin: 12.5, interestExpense: 0.775, ebit: 9.295, taxes: 2.788, netIncome: 6.51, capitalPayment: 0, debtService: 0.775 },
-  { year: 4, revenue: 91.8, cogs: 33.05, gross_profit: 58.75, gross_margin: 64, opex_marketing: 4.59, opex_salaries: 13.77, opex_rent: 13.77, opex_comisiones: 2.75, opex_other: 2.29, total_opex: 37.18, ebitdaBruto: 21.57, ebitdaBrutoMargin: 23.5, feeOperadora: 7.34, ebitdaNeto: 14.23, ebitdaNetoMargin: 15.5, interestExpense: 0.775, ebit: 13.455, taxes: 4.037, netIncome: 9.42, capitalPayment: 1.67, debtService: 2.445 },
-  { year: 5, revenue: 103.0, cogs: 37.08, gross_profit: 65.92, gross_margin: 64, opex_marketing: 5.15, opex_salaries: 15.45, opex_rent: 15.45, opex_comisiones: 3.09, opex_other: 2.58, total_opex: 41.72, ebitdaBruto: 24.20, ebitdaBrutoMargin: 23.5, feeOperadora: 8.24, ebitdaNeto: 15.96, ebitdaNetoMargin: 15.5, interestExpense: 0.775, ebit: 15.185, taxes: 4.556, netIncome: 10.63, capitalPayment: 1.67, debtService: 2.445 },
-  { year: 6, revenue: 108.0, cogs: 38.88, gross_profit: 69.12, gross_margin: 64, opex_marketing: 5.40, opex_salaries: 16.20, opex_rent: 16.20, opex_comisiones: 3.24, opex_other: 2.70, total_opex: 43.74, ebitdaBruto: 25.38, ebitdaBrutoMargin: 23.5, feeOperadora: 8.64, ebitdaNeto: 16.74, ebitdaNetoMargin: 15.5, interestExpense: 0.775, ebit: 15.965, taxes: 4.789, netIncome: 11.18, capitalPayment: 1.66, debtService: 2.435 },
-  { year: 7, revenue: 108.0, cogs: 38.88, gross_profit: 69.12, gross_margin: 64, opex_marketing: 5.40, opex_salaries: 16.20, opex_rent: 16.20, opex_comisiones: 3.24, opex_other: 2.70, total_opex: 43.74, ebitdaBruto: 25.38, ebitdaBrutoMargin: 23.5, feeOperadora: 8.64, ebitdaNeto: 16.74, ebitdaNetoMargin: 15.5, interestExpense: 0, ebit: 16.740, taxes: 5.022, netIncome: 11.72, capitalPayment: 0, debtService: 0.000 },
-  { year: 8, revenue: 108.0, cogs: 38.88, gross_profit: 69.12, gross_margin: 64, opex_marketing: 5.40, opex_salaries: 16.20, opex_rent: 16.20, opex_comisiones: 3.24, opex_other: 2.70, total_opex: 43.74, ebitdaBruto: 25.38, ebitdaBrutoMargin: 23.5, feeOperadora: 8.64, ebitdaNeto: 16.74, ebitdaNetoMargin: 15.5, interestExpense: 0, ebit: 16.740, taxes: 5.022, netIncome: 11.72, capitalPayment: 0, debtService: 0.000 }
+  { year: 1, revenue: 66.00, cogs: 23.76, gross_profit: 42.24, gross_margin: 64, opex_marketing: 5.28, opex_salaries: 9.90, opex_rent: 9.90, opex_comisiones: 1.98, opex_other: 1.65, total_opex: 28.71, ebitdaBruto: 13.53, ebitdaBrutoMargin: 20.5, feeOperadora: 5.28, ebitdaNeto: 8.25, ebitdaNetoMargin: 12.5, interestExpense: 0.775, ebit: 7.475, taxes: 2.242, netIncome: 5.23, capitalPayment: 0, debtService: 0.775 },
+  { year: 2, revenue: 80.73, cogs: 29.06, gross_profit: 51.67, gross_margin: 64, opex_marketing: 6.46, opex_salaries: 12.11, opex_rent: 12.11, opex_comisiones: 2.42, opex_other: 2.02, total_opex: 35.12, ebitdaBruto: 16.55, ebitdaBrutoMargin: 20.5, feeOperadora: 6.46, ebitdaNeto: 10.09, ebitdaNetoMargin: 12.5, interestExpense: 0.775, ebit: 9.316, taxes: 2.795, netIncome: 6.52, capitalPayment: 0, debtService: 0.775 },
+  { year: 3, revenue: 89.98, cogs: 32.39, gross_profit: 57.59, gross_margin: 64, opex_marketing: 7.20, opex_salaries: 13.50, opex_rent: 13.50, opex_comisiones: 2.70, opex_other: 2.25, total_opex: 39.14, ebitdaBruto: 18.45, ebitdaBrutoMargin: 20.5, feeOperadora: 7.20, ebitdaNeto: 11.25, ebitdaNetoMargin: 12.5, interestExpense: 0.775, ebit: 10.473, taxes: 3.142, netIncome: 7.33, capitalPayment: 0, debtService: 0.775 },
+  { year: 4, revenue: 106.44, cogs: 38.32, gross_profit: 68.12, gross_margin: 64, opex_marketing: 5.32, opex_salaries: 15.97, opex_rent: 15.97, opex_comisiones: 3.19, opex_other: 2.66, total_opex: 43.11, ebitdaBruto: 25.01, ebitdaBrutoMargin: 23.5, feeOperadora: 8.52, ebitdaNeto: 16.50, ebitdaNetoMargin: 15.5, interestExpense: 0.775, ebit: 15.723, taxes: 4.717, netIncome: 11.01, capitalPayment: 1.67, debtService: 2.445 },
+  { year: 5, revenue: 123.93, cogs: 44.61, gross_profit: 79.32, gross_margin: 64, opex_marketing: 6.20, opex_salaries: 18.59, opex_rent: 18.59, opex_comisiones: 3.72, opex_other: 3.10, total_opex: 50.19, ebitdaBruto: 29.12, ebitdaBrutoMargin: 23.5, feeOperadora: 9.91, ebitdaNeto: 19.21, ebitdaNetoMargin: 15.5, interestExpense: 0.775, ebit: 18.434, taxes: 5.530, netIncome: 12.90, capitalPayment: 1.67, debtService: 2.445 },
+  { year: 6, revenue: 128.27, cogs: 46.18, gross_profit: 82.09, gross_margin: 64, opex_marketing: 6.41, opex_salaries: 19.24, opex_rent: 19.24, opex_comisiones: 3.85, opex_other: 3.21, total_opex: 51.95, ebitdaBruto: 30.14, ebitdaBrutoMargin: 23.5, feeOperadora: 10.26, ebitdaNeto: 19.88, ebitdaNetoMargin: 15.5, interestExpense: 0.775, ebit: 19.107, taxes: 5.732, netIncome: 13.37, capitalPayment: 1.66, debtService: 2.435 },
+  { year: 7, revenue: 132.76, cogs: 47.79, gross_profit: 84.97, gross_margin: 64, opex_marketing: 6.64, opex_salaries: 19.91, opex_rent: 19.91, opex_comisiones: 3.98, opex_other: 3.32, total_opex: 53.77, ebitdaBruto: 31.20, ebitdaBrutoMargin: 23.5, feeOperadora: 10.62, ebitdaNeto: 20.58, ebitdaNetoMargin: 15.5, interestExpense: 0, ebit: 20.578, taxes: 6.173, netIncome: 14.40, capitalPayment: 0, debtService: 0 },
+  { year: 8, revenue: 137.41, cogs: 49.47, gross_profit: 87.94, gross_margin: 64, opex_marketing: 6.87, opex_salaries: 20.61, opex_rent: 20.61, opex_comisiones: 4.12, opex_other: 3.44, total_opex: 55.65, ebitdaBruto: 32.29, ebitdaBrutoMargin: 23.5, feeOperadora: 10.99, ebitdaNeto: 21.30, ebitdaNetoMargin: 15.5, interestExpense: 0, ebit: 21.299, taxes: 6.390, netIncome: 14.91, capitalPayment: 0, debtService: 0 }
 ]
 
 const RISK_MATRIX = [
