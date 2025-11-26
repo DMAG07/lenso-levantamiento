@@ -48,3 +48,65 @@
     @apply bg-red-500/20 text-red-300 border-red-500/50;
   }
 }
+
+/* Mobile Optimizations */
+@layer utilities {
+  /* Better text readability on mobile */
+  @media (max-width: 640px) {
+    .card-premium {
+      @apply p-4 text-sm;
+    }
+
+    h1 {
+      @apply text-2xl;
+    }
+
+    h2 {
+      @apply text-xl;
+    }
+
+    h3 {
+      @apply text-lg;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+      @apply overflow-x-hidden;
+    }
+
+    /* Touch-friendly buttons */
+    .btn-primary,
+    .btn-secondary {
+      @apply min-h-[44px] px-4 py-2.5;
+    }
+
+    /* Responsive tables */
+    table {
+      @apply text-xs;
+    }
+
+    /* Better spacing on mobile */
+    .space-y-6 {
+      @apply space-y-4;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .card-premium {
+      @apply p-5;
+    }
+  }
+
+  /* Smooth scrolling */
+  html {
+    @apply scroll-smooth;
+  }
+
+  /* Prevent text selection on buttons (better UX on mobile) */
+  button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+}
