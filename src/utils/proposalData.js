@@ -179,7 +179,7 @@ export const FEES_STRUCTURE = {
   placement: {
     name: 'Fee de Levantamiento y Cierre de Inversión',
     percentage: 0.01,
-    description: 'Fee de acompañamiento: Diseño de pitch deck, estructura de levantamiento de capital, acompañamiento en la negociación y cierre de inversionistas',
+    description: 'Acompañamiento estratégico en el proceso de levantamiento: diseño de pitch deck, preparación de materiales, asesoría en negociación y soporte en cierre con inversionistas',
     deliverables: [
       'Pitch deck profesional',
       'Financial model completo',
