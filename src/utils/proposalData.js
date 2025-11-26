@@ -164,8 +164,8 @@ export const CAPITAL_OPTIONS = {
 export const FEES_STRUCTURE = {
   structuring: {
     name: 'Fee de Estructuración',
-    percentage: 0.008,
-    description: 'Diseño de estructura legal, fiscal y corporativa óptima',
+    percentage: 0.01,
+    description: 'Arquitectura de levantamiento y ejecución',
     deliverables: [
       'Análisis de estructura óptima',
       'Documentos constitutivos',
@@ -176,8 +176,8 @@ export const FEES_STRUCTURE = {
   },
   placement: {
     name: 'Fee de Levantamiento y Cierre',
-    percentage: 0.012,
-    description: 'Búsqueda de inversionistas, negociación y cierre',
+    percentage: 0.01,
+    description: 'Diseño de pitch deck, estructura de levantamiento de capital, acompañamiento en la negociación y cierre de inversionistas',
     deliverables: [
       'Pitch deck profesional',
       'Financial model completo',
