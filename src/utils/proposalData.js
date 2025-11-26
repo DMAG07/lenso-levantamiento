@@ -133,11 +133,11 @@ export const CAPITAL_OPTIONS = {
       debt: 5000000
     },
     advantages: [
-      'Menor dilución de founders (20%)',
+      'Menor dilución de founders (25%)',
       'Dividendos 35% del FCF desde año 3 ($4.8M años 3-6)',
       'Costo de capital blended más bajo',
       'Intereses deducibles de impuestos',
-      'Mantiene más ownership (80% founders)',
+      'Mantiene más ownership (75% founders)',
       'Deuda senior sale primero en exit'
     ],
     disadvantages: [
@@ -147,7 +147,7 @@ export const CAPITAL_OPTIONS = {
       'Riesgo de default',
       'Requiere garantías'
     ],
-    dilution: 'Baja (20%)',
+    dilution: 'Baja (25%)',
     monthlyPayment: 66667,
     annualDebtService: 800000,
     returnExpectation: 'Equity: 11.4% IRR + Dividendos | Deuda: 15.5% fijo',
