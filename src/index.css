@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-900 text-white antialiased;
+  }
+}
+
+@layer components {
+  .card-premium {
+    @apply bg-navy-800/50 backdrop-blur-sm rounded-xl p-6 border border-titanium-700/30
+           shadow-lg transition-all duration-300;
+  }
+
+  .card-premium:hover {
+    @apply border-lenso-green-800/50 shadow-xl;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-lenso-green-800 to-lenso-green-900
+           hover:from-lenso-green-900 hover:to-lenso-green-800
+           text-white rounded-xl font-semibold transition-all duration-300
+           shadow-lg hover:shadow-xl flex items-center gap-2 justify-center;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-navy-800 hover:bg-navy-700 text-white rounded-xl
+           font-semibold border border-titanium-700/30 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-navy-900/50 border border-titanium-700/30 rounded-xl
+           text-white placeholder-titanium-500 focus:border-lenso-green-800/50
+           focus:ring-2 focus:ring-lenso-green-800/20 transition-all outline-none;
+  }
+
+  .badge-go {
+    @apply bg-emerald-500/20 text-emerald-300 border-emerald-500/50;
+  }
+
+  .badge-yellow {
+    @apply bg-amber-500/20 text-amber-300 border-amber-500/50;
+  }
+
+  .badge-no-go {
+    @apply bg-red-500/20 text-red-300 border-red-500/50;
+  }
+}
