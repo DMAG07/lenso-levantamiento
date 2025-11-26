@@ -144,8 +144,10 @@ const DCF_VALUATION = {
 
 const VENTURE_CAPITAL_VALUATION = {
   year6Revenue: 128.27,
+  year10Revenue: 147.19,
   multiploVentas: 2.0, // 2X ventas (conservador para retail)
   valuationYear6: 256.54, // 2.0 × $128.27M
+  valuationYear10: 294.38, // 2.0 × $147.19M
   methodology: '2X Revenue Multiple'
 }
 
@@ -194,7 +196,7 @@ const calculateExitScenario6 = () => {
 }
 
 const calculateExitScenario10 = () => {
-  const exitValue = VENTURE_CAPITAL_VALUATION.valuationYear6
+  const exitValue = VENTURE_CAPITAL_VALUATION.valuationYear10
 
   // Calcular cash acumulado (años 1-2: 100% retenido, años 3-10: 50% retenido)
   const cashAccumulated = PROYECCION_10_ANOS.slice(0, 10).reduce((sum, y) => {
