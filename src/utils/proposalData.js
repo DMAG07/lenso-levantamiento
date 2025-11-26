@@ -108,7 +108,7 @@ export const CAPITAL_OPTIONS = {
       'Mayor flexibilidad operativa',
       'No afecta credit score',
       'Ideal para empresas en crecimiento rápido',
-      'Dividendos 35% del FCF desde año 3'
+      'Dividendos 50% del FCF desde año 3'
     ],
     disadvantages: [
       'Mayor dilución de founders (ownership)',
@@ -122,7 +122,7 @@ export const CAPITAL_OPTIONS = {
     irr: 12.5,
     moic: 2.0,
     exitYear: 6,
-    dividendPolicy: '35% FCF desde año 3'
+    dividendPolicy: '50% FCF desde año 3'
   },
   MIXED: {
     id: 'mixed',
@@ -134,29 +134,29 @@ export const CAPITAL_OPTIONS = {
     },
     advantages: [
       'Menor dilución de founders (25%)',
-      'Dividendos 35% del FCF desde año 3 ($4.8M años 3-6)',
+      'Dividendos 50% del FCF desde año 3 ($3.39M años 3-6)',
       'Costo de capital blended más bajo',
       'Intereses deducibles de impuestos',
       'Mantiene más ownership (75% founders)',
       'Deuda senior sale primero en exit'
     ],
     disadvantages: [
-      'Obligación de pago mensual ($66,667 MXN)',
+      'Obligación de pago mensual ($64,583 MXN)',
       'Presión de cash flow',
       'Covenants financieros',
       'Riesgo de default',
       'Requiere garantías'
     ],
     dilution: 'Baja (25%)',
-    monthlyPayment: 66667,
-    annualDebtService: 800000,
-    returnExpectation: 'Equity: 11.4% IRR + Dividendos | Deuda: 15.5% fijo',
-    irr: 11.4,
-    moic: 1.92,
+    monthlyPayment: 64583,
+    annualDebtService: 775000,
+    returnExpectation: 'Equity: 19.8% IRR + Dividendos | Deuda: 15.5% fijo',
+    irr: 19.8,
+    moic: 2.95,
     exitYear: 6,
-    dividendPolicy: '35% FCF desde año 3',
-    dividendsYear6: 4800000,
-    totalReturnYear6: 48000000,
+    dividendPolicy: '50% FCF desde año 3',
+    dividendsYear6: 3390000,
+    totalReturnYear6: 73850000,
     recommended: true
   }
 }
