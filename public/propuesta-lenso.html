@@ -485,18 +485,274 @@
     }
 
     /* Responsive */
-    @media (max-width: 600px) {
-      .executive-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 16px;
       }
 
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .header p {
+        font-size: 14px;
+      }
+
+      .header-badge {
+        font-size: 10px;
+        padding: 6px 14px;
+      }
+
+      .executive-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 14px 10px;
+      }
+
+      .stat-card .value {
+        font-size: 20px;
+      }
+
+      .stat-card .label {
+        font-size: 10px;
+      }
+
+      .section-title h2 {
+        font-size: 18px;
+      }
+
+      .section-number {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .scope-list li {
+        padding: 10px 0;
+      }
+
+      .scope-text {
+        font-size: 13px;
+      }
+
+      .scope-check {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+      }
+
+      /* Timeline mobile */
+      .timeline {
+        padding-left: 24px;
+      }
+
+      .timeline::before {
+        left: 6px;
+      }
+
+      .timeline-item {
+        padding-left: 14px;
+        margin-bottom: 20px;
+      }
+
+      .timeline-item::before {
+        left: -22px;
+        width: 12px;
+        height: 12px;
+      }
+
+      .timeline-phase {
+        font-size: 10px;
+      }
+
+      .timeline-title {
+        font-size: 14px;
+      }
+
+      .timeline-content {
+        font-size: 12px;
+      }
+
+      .timeline-deliverables {
+        padding: 10px;
+      }
+
+      .timeline-deliverables ul {
+        gap: 4px;
+      }
+
+      .timeline-deliverables li {
+        font-size: 10px;
+        padding: 3px 8px;
+      }
+
+      /* Fee table mobile */
+      .fee-table {
+        font-size: 12px;
+      }
+
+      .fee-table th,
+      .fee-table td {
+        padding: 10px 8px;
+      }
+
+      .fee-table th {
+        font-size: 9px;
+      }
+
+      .fee-table .fee-moment {
+        font-size: 10px;
+      }
+
+      .fee-table tr.total-row .fee-percent,
+      .fee-table tr.total-row .fee-amount {
+        font-size: 14px;
+      }
+
+      /* Conditions mobile */
+      .condition-item {
+        padding: 12px;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .condition-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+
+      .condition-content h4 {
+        font-size: 13px;
+      }
+
+      .condition-content p {
+        font-size: 12px;
+      }
+
+      /* Target banner mobile */
+      .target-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        padding: 14px 16px;
+      }
+
+      .target-banner-label {
+        font-size: 12px;
+      }
+
+      .target-banner-value {
+        font-size: 16px;
+      }
+
+      /* Signatures mobile */
       .signatures {
         grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .signature-line {
+        width: 160px;
+      }
+
+      .signature-name {
+        font-size: 14px;
+      }
+
+      .signature-title {
+        font-size: 10px;
       }
 
       .header-meta {
         flex-direction: column;
         gap: 8px;
+      }
+
+      .footer {
+        margin-top: 40px;
+        padding-top: 30px;
+      }
+
+      .footer-note {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 16px 12px;
+      }
+
+      .header {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+
+      .header h1 {
+        font-size: 20px;
+      }
+
+      .executive-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .stat-card {
+        padding: 12px 8px;
+      }
+
+      .stat-card .value {
+        font-size: 18px;
+      }
+
+      .stat-card .label {
+        font-size: 9px;
+      }
+
+      .section {
+        margin-bottom: 28px;
+      }
+
+      .section-title {
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .section-title h2 {
+        font-size: 16px;
+      }
+
+      .fee-table th,
+      .fee-table td {
+        padding: 8px 6px;
+      }
+
+      .fee-table .fee-concept {
+        font-size: 11px;
+      }
+
+      .fee-table .fee-percent {
+        font-size: 11px;
+      }
+
+      .fee-table .fee-amount {
+        font-size: 11px;
+      }
+
+      .fee-table .fee-moment {
+        display: none;
+      }
+
+      .fee-table th:last-child {
+        display: none;
       }
     }
   </style>
