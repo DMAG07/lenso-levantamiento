@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta de Servicios - Lenso Capital Raise</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy-900: #0a0f1a;
+      --navy-800: #111827;
+      --navy-700: #1f2937;
+      --emerald-500: #10b981;
+      --emerald-600: #059669;
+      --cyan-500: #06b6d4;
+      --purple-500: #8b5cf6;
+      --amber-500: #f59e0b;
+      --titanium-300: #d1d5db;
+      --titanium-400: #9ca3af;
+      --titanium-500: #6b7280;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+      color: white;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 40px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 50px;
+      color: var(--emerald-500);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, white, var(--titanium-300));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: var(--titanium-400);
+      font-size: 16px;
+    }
+
+    .header-meta {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .header-meta-item {
+      color: var(--titanium-400);
+      font-size: 13px;
+    }
+
+    .header-meta-item strong {
+      color: white;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-number {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--emerald-500), var(--cyan-500));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .section-title h2 {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    /* Cards */
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .card-highlight {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    /* Executive Summary */
+    .executive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--emerald-500);
+      margin-bottom: 4px;
+    }
+
+    .stat-card .label {
+      font-size: 12px;
+      color: var(--titanium-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--emerald-500), var(--purple-500));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+      padding-left: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: var(--navy-800);
+      border: 3px solid var(--emerald-500);
+      border-radius: 50%;
+    }
+
+    .timeline-item.phase-2::before {
+      border-color: var(--cyan-500);
+    }
+
+    .timeline-item.phase-3::before {
+      border-color: var(--purple-500);
+    }
+
+    .timeline-phase {
+      font-size: 11px;
+      color: var(--emerald-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item.phase-2 .timeline-phase {
+      color: var(--cyan-500);
+    }
+
+    .timeline-item.phase-3 .timeline-phase {
+      color: var(--purple-500);
+    }
+
+    .timeline-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .timeline-content {
+      color: var(--titanium-400);
+      font-size: 13px;
+    }
+
+    .timeline-deliverables {
+      margin-top: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+
+    .timeline-deliverables-title {
+      font-size: 11px;
+      color: var(--titanium-500);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-deliverables ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .timeline-deliverables li {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+      color: var(--titanium-300);
+    }
+
+    /* Fee Table */
+    .fee-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .fee-table th,
+    .fee-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .fee-table th {
+      font-size: 11px;
+      color: var(--titanium-500);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .fee-table td {
+      font-size: 14px;
+    }
+
+    .fee-table .fee-concept {
+      font-weight: 500;
+    }
+
+    .fee-table .fee-percent {
+      color: var(--emerald-500);
+      font-weight: 600;
+    }
+
+    .fee-table .fee-amount {
+      color: white;
+      font-weight: 600;
+    }
+
+    .fee-table .fee-moment {
+      color: var(--titanium-400);
+      font-size: 12px;
+    }
+
+    .fee-table tr.total-row td {
+      border-top: 2px solid rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.05);
+      font-weight: 600;
+    }
+
+    .fee-table tr.total-row .fee-percent,
+    .fee-table tr.total-row .fee-amount {
+      font-size: 16px;
+    }
+
+    /* Conditions */
+    .condition-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .condition-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--amber-500), #f97316);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .condition-content h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .condition-content p {
+      font-size: 13px;
+      color: var(--titanium-400);
+    }
+
+    /* Scope List */
+    .scope-list {
+      list-style: none;
+    }
+
+    .scope-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .scope-list li:last-child {
+      border-bottom: none;
+    }
+
+    .scope-check {
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scope-text {
+      font-size: 14px;
+      color: var(--titanium-300);
+    }
+
+    .scope-text strong {
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .signatures {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .signature-block {
+      text-align: center;
+    }
+
+    .signature-line {
+      width: 200px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+      margin: 0 auto 12px;
+    }
+
+    .signature-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .signature-title {
+      font-size: 12px;
+      color: var(--titanium-400);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--titanium-500);
+    }
+
+    /* Target Date Banner */
+    .target-banner {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.15));
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .target-banner-label {
+      font-size: 13px;
+      color: var(--titanium-400);
+    }
+
+    .target-banner-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--purple-500);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        color: #1a1a1a;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .container {
+        max-width: 100%;
+        padding: 20px;
+      }
+
+      .card {
+        break-inside: avoid;
+      }
+
+      .section {
+        break-inside: avoid;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .executive-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .signatures {
+        grid-template-columns: 1fr;
+      }
+
+      .header-meta {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-badge">Propuesta de Servicios</div>
+      <h1>Estructuración de Capital</h1>
+      <p>Servicios de asesoría para levantamiento de capital - Proyecto Lenso</p>
+      <div class="header-meta">
+        <span class="header-meta-item"><strong>Cliente:</strong> Socios Lenso</span>
+        <span class="header-meta-item"><strong>Fecha:</strong> Diciembre 2024</span>
+        <span class="header-meta-item"><strong>Versión:</strong> 1.0</span>
+      </div>
+    </header>
+
+    <!-- 1. Resumen Ejecutivo -->
+    <section class="section">
+      <div class="section-title">
+        <div class="section-number">1</div>
+        <h2>Resumen Ejecutivo</h2>
+      </div>
+
+      <div class="card card-highlight">
+        <p style="color: var(--titanium-300); margin-bottom: 20px;">
+          <strong style="color: white;">Lenso</strong> es una empresa de retail óptico con un modelo de negocio validado
+          y márgenes superiores al promedio del mercado. El objetivo es estructurar y ejecutar un levantamiento de capital
+          para financiar la expansión comercial de la red de tiendas.
+        </p>
+
+        <div class="executive-grid">
+          <div class="stat-card">
+            <div class="value">$30M</div>
+            <div class="label">Capital Objetivo</div>
+          </div>
+          <div class="stat-card">
+            <div class="value">18</div>
+            <div class="label">Tiendas Target</div>
+          </div>
+          <div class="stat-card">
+            <div class="value">$25M</div>
+            <div class="label">Equity</div>
+          </div>
+          <div class="stat-card">
+            <div class="value">$5M</div>
+            <div class="label">Deuda</div>
+          </div>
+        </div>
+
+        <p style="font-size: 13px; color: var(--titanium-400);">
+          El plan contempla la apertura de tiendas financiadas con el capital levantado más tiendas adicionales
+          financiadas orgánicamente con el flujo de caja generado por la operación.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. Alcance del Servicio -->
+    <section class="section">
+      <div class="section-title">
+        <div class="section-number">2</div>
+        <h2>Alcance del Servicio</h2>
+      </div>
+
+      <div class="card">
+        <ul class="scope-list">
+          <li>
+            <span class="scope-check">✓</span>
+            <span class="scope-text"><strong>Estructuración Financiera:</strong> Diseño del modelo financiero, proyecciones, escenarios de retorno y estructura de capital óptima para el levantamiento.</span>
+          </li>
+          <li>
+            <span class="scope-check">✓</span>
+            <span class="scope-text"><strong>Documentación de Inversión:</strong> Preparación de pitch deck, memorándum de inversión, y materiales de presentación adaptados a cada perfil de inversionista.</span>
+          </li>
+          <li>
+            <span class="scope-check">✓</span>
+            <span class="scope-text"><strong>Estrategia Comercial:</strong> Identificación de perfiles de inversionistas target, estrategia de approach y argumentario de cierre personalizado.</span>
+          </li>
+          <li>
+            <span class="scope-check">✓</span>
+            <span class="scope-text"><strong>Acompañamiento en Levantamiento:</strong> Soporte en reuniones con inversionistas del pipeline generado por los socios, ajustes de pitch según feedback, y asesoría en negociación de términos.</span>
+          </li>
+          <li>
+            <span class="scope-check">✓</span>
+            <span class="scope-text"><strong>Cierre de Inversión:</strong> Coordinación del proceso de cierre, revisión de documentación legal y aseguramiento de condiciones acordadas.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.2);">
+        <p style="font-size: 13px; color: var(--titanium-300);">
+          <strong style="color: var(--amber-500);">Nota:</strong> La generación del pipeline de inversionistas es responsabilidad
+          de los socios de Lenso a través de su red de contactos. El servicio se enfoca en preparar, acompañar y cerrar
+          las oportunidades identificadas. Los asesores pueden acercar inversionistas de su red, pero no es una obligación contractual.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Fases y Timeline -->
+    <section class="section">
+      <div class="section-title">
+        <div class="section-number">3</div>
+        <h2>Fases del Proyecto</h2>
+      </div>
+
+      <div class="card">
+        <div class="timeline">
+          <!-- Fase 1 - Parte A -->
+          <div class="timeline-item">
+            <div class="timeline-phase">Fase 1 - Estructuración (Parte A)</div>
+            <div class="timeline-title">Análisis y Preparación</div>
+            <div class="timeline-content">
+              Desarrollo del modelo financiero completo, definición de estructura de capital,
+              y creación de escenario pitchable validado por los socios.
+            </div>
+            <div class="timeline-deliverables">
+              <div class="timeline-deliverables-title">Entregables</div>
+              <ul>
+                <li>Modelo financiero</li>
+                <li>Proyecciones 10 años</li>
+                <li>Estructura de capital</li>
+                <li>Escenarios de retorno</li>
+                <li>Pitch deck base</li>
+                <li>Memorándum de inversión</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Fase 1 - Parte B -->
+          <div class="timeline-item">
+            <div class="timeline-phase">Fase 1 - Estructuración (Parte B)</div>
+            <div class="timeline-title">Materiales y Estrategia</div>
+            <div class="timeline-content">
+              Setup de data room virtual, definición de perfiles target de inversionistas,
+              estrategia de approach y preparación de Q&A para due diligence.
+            </div>
+            <div class="timeline-deliverables">
+              <div class="timeline-deliverables-title">Entregables</div>
+              <ul>
+                <li>Data room virtual</li>
+                <li>Perfiles de inversionistas</li>
+                <li>Estrategia de approach</li>
+                <li>Q&A documento</li>
+                <li>Pitch personalizado por perfil</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Fase 2 -->
+          <div class="timeline-item phase-2">
+            <div class="timeline-phase">Fase 2 - Levantamiento y Cierre</div>
+            <div class="timeline-title">Ejecución y Cierre</div>
+            <div class="timeline-content">
+              Acompañamiento en reuniones con inversionistas, ajustes de pitch según feedback,
+              negociación de términos y coordinación del cierre de tickets.
+            </div>
+            <div class="timeline-deliverables">
+              <div class="timeline-deliverables-title">Entregables</div>
+              <ul>
+                <li>Soporte en presentaciones</li>
+                <li>Ajustes de pitch</li>
+                <li>Asesoría en negociación</li>
+                <li>Coordinación de cierre</li>
+                <li>Revisión de documentación</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="target-banner">
+          <span class="target-banner-label">Objetivo Fase 1 completada:</span>
+          <span class="target-banner-value">Febrero 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Estructura de Fees -->
+    <section class="section">
+      <div class="section-title">
+        <div class="section-number">4</div>
+        <h2>Estructura de Fees</h2>
+      </div>
+
+      <div class="card">
+        <p style="font-size: 13px; color: var(--titanium-400); margin-bottom: 20px;">
+          Los fees se calculan sobre el capital total objetivo de <strong style="color: white;">$30,000,000 MXN</strong>. Todos los precios son <strong style="color: white;">+ IVA</strong>.
+        </p>
+
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Porcentaje</th>
+              <th>Monto</th>
+              <th>Momento de Pago</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fee-concept">Estructuración - Parte 1</td>
+              <td class="fee-percent">0.50%</td>
+              <td class="fee-amount">$150,000</td>
+              <td class="fee-moment">Al inicio del proyecto</td>
+            </tr>
+            <tr>
+              <td class="fee-concept">Estructuración - Parte 2</td>
+              <td class="fee-percent">0.50%</td>
+              <td class="fee-amount">$150,000</td>
+              <td class="fee-moment">Al aprobar escenario pitchable</td>
+            </tr>
+            <tr>
+              <td class="fee-concept">Levantamiento - Parte 1</td>
+              <td class="fee-percent">0.50%</td>
+              <td class="fee-amount">$150,000</td>
+              <td class="fee-moment">Al aprobar escenario pitchable</td>
+            </tr>
+            <tr>
+              <td class="fee-concept">Levantamiento - Parte 2 (Cierre)</td>
+              <td class="fee-percent">0.50%</td>
+              <td class="fee-amount">$150,000</td>
+              <td class="fee-moment">Al cerrar tickets de inversión</td>
+            </tr>
+            <tr>
+              <td class="fee-concept">Finder's Fee*</td>
+              <td class="fee-percent">1.00%</td>
+              <td class="fee-amount">$300,000</td>
+              <td class="fee-moment">Por inversionista acercado</td>
+            </tr>
+            <tr class="total-row">
+              <td class="fee-concept">Total Máximo</td>
+              <td class="fee-percent">3.00%</td>
+              <td class="fee-amount">$900,000</td>
+              <td class="fee-moment">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="font-size: 11px; color: var(--titanium-500); margin-top: 16px;">
+          *El Finder's Fee aplica únicamente cuando el asesor acerca directamente al inversionista que cierra.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. Condiciones Especiales -->
+    <section class="section">
+      <div class="section-title">
+        <div class="section-number">5</div>
+        <h2>Condiciones Especiales</h2>
+      </div>
+
+      <div class="card">
+        <div class="condition-item">
+          <div class="condition-icon">🛡️</div>
+          <div class="condition-content">
+            <h4>Garantía de Valor - Fase 1</h4>
+            <p>
+              Si al concluir la Fase 1 no se logra un escenario que los socios consideren pitchable y válido,
+              el 50% del pago inicial (equivalente a <strong>$75,000 MXN</strong> / 0.25%) quedará como saldo
+              a favor del cliente para ser utilizado en otras asesorías o servicios futuros.
+            </p>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <div class="condition-icon">🤝</div>
+          <div class="condition-content">
+            <h4>Pagos Escalonados</h4>
+            <p>
+              Los pagos están vinculados a hitos específicos del proyecto, asegurando que el avance
+              del servicio esté alineado con los resultados entregados. Al aprobar el escenario pitchable,
+              se activa el pago de Estructuración P2 + Levantamiento P1 de forma conjunta.
+            </p>
+          </div>
+        </div>
+
+        <div class="condition-item">
+          <div class="condition-icon">🎯</div>
+          <div class="condition-content">
+            <h4>Finder's Fee Independiente</h4>
+            <p>
+              El Finder's Fee (1%) se paga únicamente cuando un asesor acerca directamente a un inversionista
+              que concrete su participación. Este fee es independiente de los fees de estructuración y levantamiento,
+              y puede ser cobrado por quien efectivamente realice la introducción.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Resumen de Inversión Inicial -->
+    <section class="section">
+      <div class="section-title">
+        <div class="section-number">6</div>
+        <h2>Inversión Inicial Requerida</h2>
+      </div>
+
+      <div class="card card-highlight">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <p style="font-size: 13px; color: var(--titanium-400); margin-bottom: 4px;">Para iniciar el proyecto</p>
+            <p style="font-size: 32px; font-weight: 700; color: white;">$150,000 <span style="font-size: 16px; color: var(--titanium-400);">MXN</span></p>
+            <p style="font-size: 12px; color: var(--emerald-500);">0.50% del capital objetivo</p>
+          </div>
+          <div style="text-align: right;">
+            <p style="font-size: 11px; color: var(--titanium-500); text-transform: uppercase; letter-spacing: 0.5px;">Incluye</p>
+            <p style="font-size: 13px; color: var(--titanium-300);">Fase 1 completa: Estructuración</p>
+            <p style="font-size: 13px; color: var(--titanium-300);">Objetivo: Escenario pitchable</p>
+            <p style="font-size: 13px; color: var(--titanium-300);">Meta: Febrero 2026</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="signatures">
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <div class="signature-name">MBA Diego Magallón</div>
+          <div class="signature-title">Asesor Arquitectura de Estructuración y Levantamiento</div>
+        </div>
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <div class="signature-name">MBA Carlos Muñoz</div>
+          <div class="signature-title">Asesor Arquitectura de Estructuración y Levantamiento</div>
+        </div>
+      </div>
+
+      <p class="footer-note">
+        Este documento tiene carácter informativo y comercial. Los términos finales serán establecidos
+        en el contrato de servicios correspondiente.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

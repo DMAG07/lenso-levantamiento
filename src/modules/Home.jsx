@@ -10,8 +10,20 @@ import {
   Target
 } from 'lucide-react'
 
+// Importar datos centralizados
+import { BUSINESS_CONSTANTS } from '../utils/constants'
+import {
+  DCF_VALUATION,
+  VENTURE_CAPITAL_VALUATION,
+  EXIT_SCENARIO_6,
+  PROYECCION_10_ANOS
+} from '../utils/dcfCalculations'
+
 function Home() {
   const navigate = useNavigate()
+
+  // Métricas calculadas desde la fuente de verdad
+  const year6Data = PROYECCION_10_ANOS[5]
 
   const modules = [
     {
@@ -22,17 +34,17 @@ function Home() {
       gradient: 'from-emerald-500 to-teal-600',
       path: '/investment-analysis',
       features: [
-        'DCF Valuation: $212.63M equity value',
-        'Exit Año 6: IRR 13.6%, MOIC 2.16x',
-        '18 tiendas (13 financiadas + 5 orgánicas)',
-        'EBITDA Neto 25.4% (post-fee 8%)',
+        `DCF Valuation: $${DCF_VALUATION.equityValueDCF.toFixed(2)}M equity value`,
+        `Exit Año 6: IRR ${EXIT_SCENARIO_6.irr.toFixed(1)}%, MOIC ${EXIT_SCENARIO_6.moic.toFixed(2)}x`,
+        `${BUSINESS_CONSTANTS.TARGET_STORES_TOTAL} tiendas (${BUSINESS_CONSTANTS.TARGET_STORES_FUNDED} financiadas + ${BUSINESS_CONSTANTS.TARGET_STORES_ORGANIC} orgánicas)`,
+        `EBITDA Neto ${(BUSINESS_CONSTANTS.EBITDA_NETO_MATURE * 100).toFixed(1)}% (post-fee 8%)`,
         'Proyecciones P&L completas',
         'Comparativa DCF vs VC valuation'
       ],
       metrics: {
-        revenue: '$108M',
-        irr: '13.6%',
-        stores: '18'
+        revenue: `$${year6Data.revenue.toFixed(0)}M`,
+        irr: `${EXIT_SCENARIO_6.irr.toFixed(1)}%`,
+        stores: `${BUSINESS_CONSTANTS.TARGET_STORES_TOTAL}`
       },
       status: 'active'
     },
@@ -45,16 +57,16 @@ function Home() {
       path: '/service-proposal',
       features: [
         'Opción Simple, Control y Fideicomiso',
-        '$25M capital + $5M deuda = $30M',
-        'Dilución 25% para inversionistas',
-        'Retornos: 13.6% IRR, MOIC 2.16x',
-        'Fees totales 2.40% del capital',
+        `$${BUSINESS_CONSTANTS.EQUITY_CAPITAL / 1000000}M capital + $${BUSINESS_CONSTANTS.DEBT_CAPITAL / 1000000}M deuda = $${BUSINESS_CONSTANTS.TOTAL_RAISE / 1000000}M`,
+        `Dilución ${BUSINESS_CONSTANTS.DILUTION * 100}% para inversionistas`,
+        `Retornos: ${EXIT_SCENARIO_6.irr.toFixed(1)}% IRR, MOIC ${EXIT_SCENARIO_6.moic.toFixed(2)}x`,
+        `Fees totales ${(BUSINESS_CONSTANTS.FEES.TOTAL * 100).toFixed(2)}% del capital`,
         'Timeline 12-16 semanas'
       ],
       metrics: {
-        capital: '$30M',
-        dilution: '25%',
-        fees: '2.40%'
+        capital: `$${BUSINESS_CONSTANTS.TOTAL_RAISE / 1000000}M`,
+        dilution: `${BUSINESS_CONSTANTS.DILUTION * 100}%`,
+        fees: `${(BUSINESS_CONSTANTS.FEES.TOTAL * 100).toFixed(2)}%`
       },
       status: 'active'
     },
@@ -112,22 +124,22 @@ function Home() {
           >
             <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 rounded-xl p-4 text-center">
               <DollarSign className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
-              <p className="text-3xl font-bold text-white">$30M</p>
+              <p className="text-3xl font-bold text-white">${BUSINESS_CONSTANTS.TOTAL_RAISE / 1000000}M</p>
               <p className="text-xs text-titanium-400">Capital Total</p>
             </div>
             <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl p-4 text-center">
               <Target className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-              <p className="text-3xl font-bold text-white">18</p>
+              <p className="text-3xl font-bold text-white">{BUSINESS_CONSTANTS.TARGET_STORES_TOTAL}</p>
               <p className="text-xs text-titanium-400">Tiendas Target</p>
             </div>
             <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-xl p-4 text-center">
               <TrendingUp className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-              <p className="text-3xl font-bold text-white">13.6%</p>
+              <p className="text-3xl font-bold text-white">{EXIT_SCENARIO_6.irr.toFixed(1)}%</p>
               <p className="text-xs text-titanium-400">IRR Proyectado</p>
             </div>
             <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-xl p-4 text-center">
               <BarChart3 className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-              <p className="text-3xl font-bold text-white">$108M</p>
+              <p className="text-3xl font-bold text-white">${year6Data.revenue.toFixed(0)}M</p>
               <p className="text-xs text-titanium-400">Revenue Año 6</p>
             </div>
           </motion.div>

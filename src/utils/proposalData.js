@@ -1,4 +1,9 @@
 // Service Proposal Data & Constants
+// SINCRONIZADO CON InvestmentAnalysisV2.jsx como fuente de verdad
+// ACTUALIZADO: Diciembre 2024 - Acuerdo comercial con socios Lenso
+
+import { BUSINESS_CONSTANTS } from './constants'
+import { EXIT_SCENARIO_6 } from './dcfCalculations'
 
 export const CAPITAL_STRUCTURES = {
   SIMPLE: {
@@ -97,9 +102,9 @@ export const CAPITAL_OPTIONS = {
   EQUITY_ONLY: {
     id: 'equity-only',
     name: 'Solo Capital (Equity)',
-    amount: 25000000,
+    amount: BUSINESS_CONSTANTS.EQUITY_CAPITAL,
     structure: {
-      equity: 25000000,
+      equity: BUSINESS_CONSTANTS.EQUITY_CAPITAL,
       debt: 0
     },
     advantages: [
@@ -116,168 +121,227 @@ export const CAPITAL_OPTIONS = {
       'Pérdida de control proporcional al equity cedido',
       'Menor apalancamiento para crecimiento'
     ],
-    dilution: 'Alta (~21-22%)',
+    dilution: '~25%',
     monthlyPayment: 0,
-    returnExpectation: '12-13% IRR + Dividendos',
-    irr: 12.5,
-    moic: 2.0,
+    returnExpectation: `${EXIT_SCENARIO_6.irr.toFixed(1)}% IRR + Dividendos`,
+    irr: EXIT_SCENARIO_6.irr,
+    moic: EXIT_SCENARIO_6.moic,
     exitYear: 6,
     dividendPolicy: '50% FCF desde año 3'
   },
   MIXED: {
     id: 'mixed',
     name: 'Capital + Deuda',
-    amount: 30000000,
+    amount: BUSINESS_CONSTANTS.TOTAL_RAISE,
     structure: {
-      equity: 25000000,
-      debt: 5000000
+      equity: BUSINESS_CONSTANTS.EQUITY_CAPITAL,
+      debt: BUSINESS_CONSTANTS.DEBT_CAPITAL
     },
     advantages: [
-      'Menor dilución de founders (25%)',
-      'Dividendos 50% del FCF desde año 3 ($3.39M años 3-6)',
+      `Menor dilución de founders (${BUSINESS_CONSTANTS.DILUTION * 100}%)`,
+      'Dividendos 50% del FCF desde año 3',
       'Costo de capital blended más bajo',
       'Intereses deducibles de impuestos',
-      'Mantiene más ownership (75% founders)',
+      `Mantiene más ownership (${(1 - BUSINESS_CONSTANTS.DILUTION) * 100}% founders)`,
       'Deuda senior sale primero en exit'
     ],
     disadvantages: [
-      'Obligación de pago mensual ($64,583 MXN)',
+      'Obligación de pago mensual (~$64,583 MXN)',
       'Presión de cash flow',
       'Covenants financieros',
       'Riesgo de default',
       'Requiere garantías'
     ],
-    dilution: 'Baja (25%)',
+    dilution: `${BUSINESS_CONSTANTS.DILUTION * 100}%`,
     monthlyPayment: 64583,
     annualDebtService: 775000,
-    returnExpectation: 'Equity: 19.8% IRR + Dividendos | Deuda: 15.5% fijo',
-    irr: 19.8,
-    moic: 2.95,
+    returnExpectation: `Equity: ${EXIT_SCENARIO_6.irr.toFixed(1)}% IRR + Dividendos | Deuda: ${BUSINESS_CONSTANTS.DEBT_INTEREST_RATE * 100}% fijo`,
+    irr: EXIT_SCENARIO_6.irr,
+    moic: EXIT_SCENARIO_6.moic,
     exitYear: 6,
     dividendPolicy: '50% FCF desde año 3',
-    dividendsYear6: 3390000,
-    totalReturnYear6: 73850000,
+    dividendsYear6: EXIT_SCENARIO_6.dividendsReceived,
+    totalReturnYear6: EXIT_SCENARIO_6.totalReturn,
     recommended: true
   }
 }
 
+// Fees Structure - Total 3% (Actualizado Dic 2024)
+// Estructura de pagos escalonados acordada con socios Lenso
 export const FEES_STRUCTURE = {
-  structuring: {
-    name: 'Fee de Estructuración',
-    percentage: 0.01,
-    description: 'Arquitectura de levantamiento',
+  structuring_p1: {
+    name: 'Estructuración - Parte 1',
+    percentage: 0.005, // 0.5%
+    description: 'Inicio del proyecto - Desarrollo de modelo financiero y estructura',
+    paymentMoment: 'Al inicio del proyecto',
     deliverables: [
-      'Creación de instrumento de deuda',
-      'Creación de instrumento de capital',
-      'Contratos de adhesión de inversionistas',
-      'Contrato de deuda',
-      'Estructura fiscal de los inversionistas',
-      'Modelo de reporteo',
-      'Estrategia de levantamiento de capital'
+      'Modelo financiero completo',
+      'Proyecciones 10 años',
+      'Estructura de capital',
+      'Escenarios de retorno',
+      'Pitch deck base',
+      'Memorándum de inversión'
     ]
   },
-  placement: {
-    name: 'Fee de Levantamiento y Cierre de Inversión',
-    percentage: 0.01,
-    description: 'Acompañamiento estratégico en el proceso de levantamiento: diseño de pitch deck, preparación de materiales, asesoría en negociación y soporte en cierre con inversionistas',
+  structuring_p2: {
+    name: 'Estructuración - Parte 2',
+    percentage: 0.005, // 0.5%
+    description: 'Al aprobar escenario pitchable validado por socios',
+    paymentMoment: 'Al aprobar escenario pitchable',
     deliverables: [
-      'Pitch deck profesional',
-      'Financial model completo',
+      'Escenario pitchable aprobado',
+      'Ajustes finales al modelo',
+      'Documentación lista para inversores'
+    ]
+  },
+  placement_p1: {
+    name: 'Levantamiento - Parte 1',
+    percentage: 0.005, // 0.5%
+    description: 'Setup de materiales y estrategia de levantamiento',
+    paymentMoment: 'Al aprobar escenario pitchable',
+    deliverables: [
       'Data room virtual',
-      'Roadshow con inversionistas',
-      'Negociación de términos',
-      'Cierre de ronda'
+      'Perfiles de inversionistas target',
+      'Estrategia de approach',
+      'Q&A documento',
+      'Pitch personalizado por perfil'
+    ]
+  },
+  placement_p2: {
+    name: 'Levantamiento - Parte 2 (Cierre)',
+    percentage: 0.005, // 0.5%
+    description: 'Acompañamiento en cierre de tickets de inversión',
+    paymentMoment: 'Al cerrar tickets de inversión',
+    deliverables: [
+      'Soporte en presentaciones',
+      'Ajustes de pitch según feedback',
+      'Asesoría en negociación de términos',
+      'Coordinación de cierre',
+      'Revisión de documentación'
     ]
   },
   finders: {
     name: 'Finder\'s Fee',
-    percentage: 0.01,
-    description: 'Compensación para quien atraiga al inversionista',
+    percentage: 0.01, // 1%
+    description: 'Compensación por inversionista acercado directamente por el asesor',
+    paymentMoment: 'Por inversionista acercado que cierre',
+    note: 'Aplica únicamente cuando el asesor acerca directamente al inversionista',
     deliverables: [
       'Introducción directa con inversionista calificado',
       'Facilitación de primeras reuniones',
-      'Soporte en negociaciones iniciales',
-      'Validación de términos de inversión'
+      'Soporte en negociaciones iniciales'
     ]
   }
 }
 
+// Garantía de Valor
+export const VALUE_GUARANTEE = {
+  condition: 'Si no se logra escenario pitchable en Fase 1',
+  refundPercentage: 0.0025, // 0.25%
+  refundAmount: BUSINESS_CONSTANTS.TOTAL_RAISE * 0.0025, // $75,000
+  description: 'El 50% del pago inicial queda como saldo a favor para otras asesorías'
+}
+
+// Timeline actualizado - Sin tiempos específicos, basado en fases
 export const IMPLEMENTATION_TIMELINE = [
   {
     phase: 1,
     name: 'Estructuración',
-    duration: '2-4 semanas',
+    subtitle: 'Análisis y Preparación',
+    targetDate: 'Febrero 2026',
     activities: [
       'Kick-off meeting y definición de objetivos',
-      'Análisis de estructura óptima',
-      'Diseño de términos y condiciones',
-      'Preparación de documentos constitutivos',
-      'Revisión y aprobación de estructura'
+      'Desarrollo del modelo financiero completo',
+      'Diseño de estructura de capital óptima',
+      'Creación de escenarios de retorno',
+      'Preparación de pitch deck base',
+      'Elaboración de memorándum de inversión',
+      'Validación de escenario pitchable con socios'
     ],
     deliverables: [
-      'Term sheet',
-      'Estructura corporativa',
-      'Documentos constitutivos'
-    ]
+      'Modelo financiero',
+      'Proyecciones 10 años',
+      'Estructura de capital',
+      'Escenarios de retorno',
+      'Pitch deck base',
+      'Memorándum de inversión'
+    ],
+    fee: {
+      start: { percentage: '0.5%', amount: 150000, moment: 'Al inicio' },
+      milestone: { percentage: '0.5%', amount: 150000, moment: 'Al aprobar escenario pitchable' }
+    }
   },
   {
     phase: 2,
-    name: 'Preparación',
-    duration: '3-4 semanas',
+    name: 'Preparación de Levantamiento',
+    subtitle: 'Materiales y Estrategia',
     activities: [
-      'Creación de financial model',
-      'Diseño de pitch deck',
-      'Setup de data room',
-      'Preparación de Q&A',
-      'Identificación de target investors'
+      'Setup de data room virtual',
+      'Identificación de perfiles de inversionistas target',
+      'Diseño de estrategia de approach',
+      'Preparación de Q&A para due diligence',
+      'Personalización de pitch por perfil de inversionista'
     ],
     deliverables: [
-      'Financial model completo',
-      'Pitch deck profesional',
       'Data room virtual',
-      'Lista de target investors'
-    ]
+      'Perfiles de inversionistas',
+      'Estrategia de approach',
+      'Q&A documento',
+      'Pitch personalizado por perfil'
+    ],
+    fee: {
+      start: { percentage: '0.5%', amount: 150000, moment: 'Al aprobar escenario pitchable (junto con Estructuración P2)' }
+    }
   },
   {
     phase: 3,
-    name: 'Levantamiento',
-    duration: '6-8 semanas',
+    name: 'Levantamiento y Cierre',
+    subtitle: 'Ejecución y Cierre',
     activities: [
-      'Roadshow con inversionistas',
-      'Presentaciones one-on-one',
-      'Due diligence process',
-      'Negociación de términos',
-      'Obtención de commitments'
+      'Acompañamiento en reuniones con inversionistas',
+      'Ajustes de pitch según feedback recibido',
+      'Asesoría en negociación de términos',
+      'Coordinación del proceso de cierre',
+      'Revisión de documentación legal'
     ],
     deliverables: [
-      'Investment commitments',
-      'Términos negociados',
-      'LOIs firmadas'
-    ]
-  },
-  {
-    phase: 4,
-    name: 'Cierre',
-    duration: '2-3 semanas',
-    activities: [
-      'Firma de documentos legales',
-      'Wire transfers',
-      'Registro de nuevos accionistas',
-      'Setup de governance',
-      'Comunicación post-cierre'
+      'Soporte en presentaciones',
+      'Ajustes de pitch',
+      'Asesoría en negociación',
+      'Coordinación de cierre',
+      'Revisión de documentación'
     ],
-    deliverables: [
-      'Capital en banco',
-      'Acuerdos firmados',
-      'Estructura operativa'
-    ]
+    fee: {
+      milestone: { percentage: '0.5%', amount: 150000, moment: 'Al cerrar tickets de inversión' }
+    },
+    note: 'El pipeline de inversionistas es generado por los socios. El servicio acompaña y cierra las oportunidades identificadas.'
   }
 ]
 
+// Resumen de fees para display
+export const FEES_SUMMARY = {
+  totalPercentage: 0.03, // 3%
+  totalAmount: BUSINESS_CONSTANTS.TOTAL_RAISE * 0.03, // $900,000
+  capitalBase: BUSINESS_CONSTANTS.TOTAL_RAISE, // $30,000,000
+  breakdown: [
+    { concept: 'Estructuración - Parte 1', percentage: 0.5, amount: 150000, moment: 'Al inicio del proyecto' },
+    { concept: 'Estructuración - Parte 2', percentage: 0.5, amount: 150000, moment: 'Al aprobar escenario pitchable' },
+    { concept: 'Levantamiento - Parte 1', percentage: 0.5, amount: 150000, moment: 'Al aprobar escenario pitchable' },
+    { concept: 'Levantamiento - Parte 2 (Cierre)', percentage: 0.5, amount: 150000, moment: 'Al cerrar tickets' },
+    { concept: 'Finder\'s Fee*', percentage: 1.0, amount: 300000, moment: 'Por inversionista acercado' }
+  ],
+  initialInvestment: {
+    percentage: 0.5,
+    amount: 150000,
+    description: 'Fase 1 completa: Estructuración'
+  }
+}
+
+// Legacy function for backward compatibility
 export const calculateFees = (capitalAmount) => {
-  const structuringFee = capitalAmount * FEES_STRUCTURE.structuring.percentage
-  const placementFee = capitalAmount * FEES_STRUCTURE.placement.percentage
-  const findersFee = capitalAmount * FEES_STRUCTURE.finders.percentage
+  const structuringFee = capitalAmount * 0.01 // 1% total (0.5% + 0.5%)
+  const placementFee = capitalAmount * 0.01 // 1% total (0.5% + 0.5%)
+  const findersFee = capitalAmount * 0.01 // 1%
   const totalFees = structuringFee + placementFee + findersFee
   const totalPercentage = (totalFees / capitalAmount) * 100
 
@@ -290,15 +354,15 @@ export const calculateFees = (capitalAmount) => {
     breakdown: {
       structuring: {
         amount: structuringFee,
-        percentage: FEES_STRUCTURE.structuring.percentage * 100
+        percentage: 1.0
       },
       placement: {
         amount: placementFee,
-        percentage: FEES_STRUCTURE.placement.percentage * 100
+        percentage: 1.0
       },
       finders: {
         amount: findersFee,
-        percentage: FEES_STRUCTURE.finders.percentage * 100
+        percentage: 1.0
       }
     }
   }
